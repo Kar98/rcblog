@@ -1,0 +1,38 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Rory</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+
+<div class="navbar">
+  <div class = "navbar-header">
+    {% if g.endpoint == "index" %}
+    <a class="active" href="/">RC Software</a>
+    {% else %}
+    <a href="/">Home</a>
+    {% endif %}
+  </div>
+
+  <div class="navbar-items">
+  {% if g.endpoint == "articles" %}
+  <a class = "active" href="/articles">Articles</a>
+  {% else %}
+  <a href="/articles">Articles</a>
+  {% endif %}
+
+
+  {% if g.endpoint == "about" %}
+  <a class = "active" href="/about">About</a>
+  {% else %}
+  <a href="/about">About</a>
+  {% endif %}
+  </div>
+</div>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>

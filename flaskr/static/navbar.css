@@ -1,0 +1,47 @@
+/* Add a black background color to the top navigation */
+
+.navbar {
+  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; }
+
+.navbar {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #3498db;
+}
+
+/* Style the links inside the navigation bar */
+.navbar a {
+  float: left;
+  color: white;
+  background-color: #3498db;
+  border-color: #217dbb;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar-items a {
+  float: left;
+  color: white;
+  background-color: #3498db;
+  border-color: #217dbb;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}*/
+
+/* Add a color to the active/current link
+.navbar a.active {
+  background-color: #3498ef;
+  color: white;
+}*/
+
