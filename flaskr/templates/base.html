@@ -1,31 +1,30 @@
 <!doctype html>
 <title>{% block title %}{% endblock %} - Rory</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
 
-<div class="navbar">
+<link rel="stylesheet" href="{{ url_for('static', filename='shintori.css') }}">
+
+<div class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
   <div class = "navbar-header">
     {% if g.endpoint == "index" %}
-    <a class="active" href="/">RC Software</a>
+    <a class="active navbar-brand" href="/">RC Software</a>
     {% else %}
-    <a href="/">Home</a>
+    <a class="navbar-brand" href="/">Home</a>
     {% endif %}
   </div>
 
-  <div class="navbar-items">
-  {% if g.endpoint == "articles" %}
-  <a class = "active" href="/articles">Articles</a>
-  {% else %}
-  <a href="/articles">Articles</a>
-  {% endif %}
+    <div class="collapse navbar-collapse js-navbar-collapse">
+    <ul class="navbar-nav nav">
+      <li>
+      <a href="/articles">Articles</a>
+      </li>
+      <li>
+      <a href="/about">About</a>
+      </li>
+    </ul>
+    </div>
+    </div>
 
-
-  {% if g.endpoint == "about" %}
-  <a class = "active" href="/about">About</a>
-  {% else %}
-  <a href="/about">About</a>
-  {% endif %}
-  </div>
 </div>
 <section class="content">
   <header>
