@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
-
-{% block header %}
- <link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+{% block links %}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 {% endblock %}
+{% block title %}Articles{% endblock %}
 
 {% block content %}
-
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h3 class="section-header-archive">2021 Articles</h3>
+            <a class="post-title-archive" href="/articles/2021/agile">The dubious nature of Agile</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

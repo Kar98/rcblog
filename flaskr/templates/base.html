@@ -1,16 +1,17 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Rory</title>
+<title>{% block title %}{% endblock %}</title>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='shintori.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='tmp/Montserrat-Regular.tff') }}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+{% block links %}{% endblock %}
 
-<div class="navbar navbar-inverse navbar-static-top">
+<div class="navbar navbar-inverse navbar-static-top" style="font-family:Montserrat">
   <div class="container">
   <div class = "navbar-header">
-    {% if g.endpoint == "index" %}
-    <a class="active navbar-brand" href="/">RC Software</a>
-    {% else %}
-    <a class="navbar-brand" href="/">Home</a>
-    {% endif %}
+    <a class="navbar-brand" href="/">RC Software</a>
   </div>
 
     <div class="collapse navbar-collapse js-navbar-collapse">
@@ -21,17 +22,17 @@
       <li>
       <a href="/about">About</a>
       </li>
+      <li>
+      <a href="/test">Test</a>
+      </li>
     </ul>
     </div>
     </div>
 
+
 </div>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+
+<div class="container" id="main">
+  {% block content %}
+  {% endblock %}
+  </div>
