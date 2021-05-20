@@ -1,5 +1,9 @@
-import flaskr
-print('pre create')
+from flaskr import create_app
+
 if __name__ == '__main__':
-    flaskr.create_app(None).run(debug=False)
-print('post create')
+    print('in if')
+    create_app = create_app()
+    create_app.run()
+else:
+    print('in else')
+    app = create_app()
