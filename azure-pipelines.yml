@@ -15,7 +15,7 @@ steps:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/App$(Build.BuildId).zip'
     replaceExistingArchive: true
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -26,5 +26,5 @@ steps:
     deployToSlotOrASE: true
     ResourceGroupName: 'webapps'
     SlotName: 'production'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/App$(Build.BuildId).zip'
     RuntimeStack: 'PYTHON|3.8'
