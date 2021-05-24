@@ -1,9 +1,6 @@
 import os
 
 from flask import Flask, render_template, g
-
-print('start of __init__ app')
-
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -35,10 +32,6 @@ def create_app(test_config=None):
     def about():
         g.endpoint = "about"
         return render_template('about.html')
-
-    @app.route('/test')
-    def test():
-        return render_template('test.html')
 
 
     from . import db
