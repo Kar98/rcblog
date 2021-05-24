@@ -28,3 +28,4 @@ steps:
     SlotName: 'production'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/App$(Build.BuildId).zip'
     RuntimeStack: 'PYTHON|3.8'
+    
