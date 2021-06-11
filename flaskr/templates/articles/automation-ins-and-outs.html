@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block links %}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+{% endblock %}
+{% block title %}Automation-ins-and-outs{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <article>
+                <div class="post-header">
+                    <h1>Automation ins and outs</h1>
+                </div>
+                <div class="post-content">
+                    <p>Automation is once again the new hot thing on the market. Media companies love scaring you about it (will robots take all your jobs? No, now gtfo). Companies like talking about it (ooo, I have 30% automation coverage). And testing companies like selling it (80% automation test coverage in a few months? Really Tosca?). </p>
+                    <p>As with all things, reality will eventually hit you and your nice plans fall apart. I’ll write about the experience that I’ve had as a test automater and where its effectiveness actually is.</p>
+                    <h2>Know your problem</h2>
+                    <p>Automation is sold to companies looking to reduce costs or improve efficiency. This gets tricky when the contracted test company wants to keep as many testers as possible within the organisation. I’ll give you automation and then you remove 3 of my testers? No thanks. </p>
+                    <p>Selling efficiency is harder since it’s not obvious on how to track this. Yes you can use ‘test cases run’ but that’s like a runner saying they’ve run 15% more lengths of string since last month. Not a great metric. The biggest benefits of automation that I see are test data creation and improving work enjoyment. The former is obvious (but still under-appreciated) but the latter one is a real underdog.</p>
+                    <h2>Test data sucks</h2>
+                    <p>When I was working at Crown Casino we had 4 different environments: test, integration, preprod and prod. The test data between these environments was atrocious. Often you would test based on data that was 2 years old in Test and generate test scenarios based on current functionality. The data in prod was 25 years old and mandatory fields were slowly added over those 25 years. This meant you would have patron account with bizarre data in prod but were perfectly legitimate scenarios. </p>
+                    <p>You would have no way of knowing about these patrons, and so you would write your tests, they passed in test. It hits prod and suddenly you’ve got panic call to ops about some patron not being able to gamble because they had an account from 10 years ago. The worst of this was a bad index on a particular table which would freeze the entire update process. Solution? Delete the update for that 1 patron account and keep going (yes this really happened). </p>
+                    <p>Here automation can solve our problem. In manual testing land, you must manually create accounts which takes time. Often you will try to minimise this overhead and reuse accounts. Potentially you even cut down the scenarios that require too many data combinations. With automation, its possible to mass create these users accounts (often within seconds) and you can test away. Automation can sometimes skip the GUI and setup scenarios that normally wouldn’t be possible.</p>
+                    <h2>How does automation improve work enjoyment?</h2>
+                    <p>Manual testing is boring. There’s a good reason you see so many testers with headphones in. In this subsection of testing, there are some tasks that make you consider bunjie jumping without the cord. What’s that? You have to test a COTS Sharepoint library, where the only difference is the caveat checkbox you select when you upload it. Oh and we require screenshots for every step. And you must use different users every time. Yes it will take all week, but that’s your job. And it’s regression … enjoy!</p>
+                    <p>About halfway through this task, you’ll start to mark things as passed even though you really haven’t tested it. You’ve tested users 1-10, so I guess users 11-20 should also pass. I’ll just put a little tick next to them and move onto the next one. Then lo and behold, user 19 failed because some dev was too lazy to upload the right config. </p>
+                    <p>Not all manual testing is terrible. If you can remove these incredibly repetitive tasks from the manual testing pool, they can focus on more interesting and fun tests. Complex integration tests are what manual testers should be focussing on. Especially where it is too expensive to automate due to complexity. </p>
+                    <h2>The automation pitfall</h2>
+                    <p>You’ve read through this and thought, you know I could use this in my org. You bring in an automater, scripts are written, they are working and the other testers like it. The automater moves on (I mean c’mon they are expensive) and the test team stops using it. What’s going on?</p>
+                    <p>Change is hard. Maintaining automation scripts to constantly work all the time is harder. Unless effort is made to ensure the scripts survive changes they become useless. Every place I’ve worked in, I will come in, write/use a framework that is pretty easy, but does require some programming knowledge. Then they use it for a bit, lose interest and go back to what they were doing. </p>
+                    <p>I suspect it’s a variety of reasons. Not interested, they have a particular process, scared to try new things, don’t trust the scripts, scared to ask in case it makes them look dumb etc. A relatively common scenario, is a tester will need test data, ask me to create, then they will use those users for their scenarios. It’s very rare that they take an interest in how it works, it’s the outcome that interests them.</p>
+                    <h2>What’s the path to automation success?</h2>
+                    <p>Unfortunately it’s not a nice answer. Wait for existing staff to want to ‘grow their career’, or hire a full time automation tester. I’ve worked for a variety of clients who think the automater can write this amazing framework that is so easy to use and all the staff can use it, but that’s simply not reality. Any automation framework needs some basic level of technical skill (understanding JSON), which excludes 80% of your manual testers. Then of that 20%, someone needs to have a curiosity in automation to want to use it. </p>
+                    <p>If they do use it, but don’t know how to maintain the scripts, then the typically life of a script is around 6-12months. Obviously it depends on how many updates are occurring but that’s a fairly safe timeframe. Even for trivially easy things like API calls, often there will be an API update with a mandatory field which breaks the script.  </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
