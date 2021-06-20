@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}RC Software{% endblock %}
+
+
+{% block content %}
+<p>found articles below</p>
+{% for article in articles %}
+<p>{{article}}</p>
+{% endfor %}
+{% endblock %}

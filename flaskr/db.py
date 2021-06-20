@@ -22,11 +22,32 @@ def close_db(e=None):
     if db is not None:
         db.close()
 
+
+def setupArticles(db):
+    article1 = "INSERT INTO articles(article_name,tags,article_content) VALUES ('agile','agile,software,development','content1');"
+    article2 = "INSERT INTO articles(article_name,tags,article_content) VALUES ('automation-ins-and-outs','automation,development','content2');"
+    article3 = "INSERT INTO articles(article_name,tags,article_content) VALUES ('running-a-good-review','agile,review','content1');"
+
+    cur = db.cursor()
+
+    eid = cur.execute(article1)
+    db.commit()
+    print('executed {}'.format(eid))
+
+    eid = cur.execute(article2)
+    db.commit()
+    print('executed {}'.format(eid))
+
+    eid = cur.execute(article3)
+    db.commit()
+    print('executed {}'.format(eid))
+
 def init_db():
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
+    setupArticles(db)
 
 
 @click.command('init-db')
@@ -35,6 +56,7 @@ def init_db_command():
     """Clear the existing data and create new tables."""
     init_db()
     click.echo('Initialized the database.')
+
 
 def init_app(app):
     app.teardown_appcontext(close_db)

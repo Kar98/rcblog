@@ -1,8 +1,28 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+from flaskr.db import get_db
 
 bp = Blueprint('articles', __name__)
+
+@bp.route('/articles/tags/<tag>')
+def getTags(tag: str):
+    db = get_db()
+    # Click on tag
+    # Code will look up all articles
+    rows = db.execute('SELECT * FROM articles;').fetchall()
+    foundTags = []
+    foundArticles = []
+
+    for row in rows:
+        if tag in row[2]:
+            foundTags.append(tag)
+            foundArticles.append(row[1])
+
+    # If an article contains the expected tag, then output
+    print(foundArticles)
+    return render_template('tags.html',articles=foundArticles)
+
 
 @bp.route('/articles')
 def articleIndex():

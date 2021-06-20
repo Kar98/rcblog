@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, g
 def create_app(test_config=None):
     # create and configure the app
+    print('create_app')
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
@@ -32,7 +33,6 @@ def create_app(test_config=None):
     def about():
         g.endpoint = "about"
         return render_template('about.html')
-
 
     from . import db
     db.init_app(app)
