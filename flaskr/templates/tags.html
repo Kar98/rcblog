@@ -3,8 +3,10 @@
 
 
 {% block content %}
-<p>found articles below</p>
-{% for article in articles %}
-<p>{{article}}</p>
-{% endfor %}
+<p>Articles based on '{{tag}}'</p>
+<ul>
+    {% for article in articles %}
+    <li><a href="/articles/2021/{{article}}">{{article}}</a></li>
+    {% endfor %}
+    </ul>
 {% endblock %}

@@ -21,7 +21,19 @@ def getTags(tag: str):
 
     # If an article contains the expected tag, then output
     print(foundArticles)
-    return render_template('tags.html',articles=foundArticles)
+    return render_template('tags.html',articles=foundArticles, tag=tag)
+
+
+def outputTagsForArticle(article):
+    db = get_db()
+    rows = db.execute('SELECT article_name,tags FROM articles;').fetchall()
+    foundRow = ''
+    for row in rows:
+        if article in row[0]:
+            foundRow = row[1]
+    foundTags = foundRow.split(',')
+    print(foundTags)
+    return foundTags
 
 
 @bp.route('/articles')
@@ -29,14 +41,19 @@ def articleIndex():
     g.endpoint = 'articles'
     return render_template('articles.html')
 
-@bp.route('/articles/2021/agile')
+@bp.route('/articles/2021/the-dubious-nature-of-agile')
 def article1():
-    return render_template('articles/agile.html')
+    return render_template('articles/the-dubious-nature-of-agile.html',tags=outputTagsForArticle('the-dubious-nature-of-agile'))
 
 @bp.route('/articles/2021/automation-ins-and-outs')
 def article2():
-    return render_template('articles/automation-ins-and-outs.html')
+    return render_template('articles/automation-ins-and-outs.html',tags=outputTagsForArticle('automation-ins-and-outs'))
 
 @bp.route('/articles/2021/running-a-good-review')
 def article3():
-    return render_template('articles/running-a-good-review.html')
+    return render_template('articles/running-a-good-review.html',tags=outputTagsForArticle('running-a-good-review'))
+'''
+@bp.route('/articles/<year>/<url>')
+def getArticle(year,name):
+    return render_template('articles/{}'.format(name))
+'''

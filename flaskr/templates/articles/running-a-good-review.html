@@ -26,5 +26,12 @@
             </article>
         </div>
     </div>
+    <div class="row">
+        <p>Tags:
+    {% for tag in tags %}
+            <a href="/articles/tags/{{tag}}">{{tag}} </a>
+    {% endfor %}
+        </p>
+    </div>
 </div>
 {% endblock %}
