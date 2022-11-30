@@ -52,6 +52,10 @@ def article2():
 @bp.route('/articles/2021/running-a-good-review')
 def article3():
     return render_template('articles/running-a-good-review.html',tags=outputTagsForArticle('running-a-good-review'))
+
+@bp.route('/articles/2022/performance')
+def article4():
+    return render_template('articles/performance.html',tags=outputTagsForArticle('performance'))
 '''
 @bp.route('/articles/<year>/<url>')
 def getArticle(year,name):
