@@ -26,7 +26,10 @@ def getTags(tag: str):
 
 def outputTagsForArticle(article):
     db = get_db()
-    rows = db.execute('SELECT article_name,tags FROM articles;').fetchall()
+    try:
+        rows = db.execute('SELECT article_name,tags FROM articles;').fetchall()
+    except:
+        rows = []
     foundRow = ''
     for row in rows:
         if article in row[0]:
