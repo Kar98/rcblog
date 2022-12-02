@@ -13,6 +13,7 @@ def get_db():
         )
         g.db.row_factory = sqlite3.Row
 
+    print('db config ' + current_app.config['DATABASE'])
     return g.db
 
 

@@ -29,6 +29,7 @@ def outputTagsForArticle(article):
     try:
         rows = db.execute('SELECT article_name,tags FROM articles;').fetchall()
     except:
+        print('no db found')
         rows = []
     foundRow = ''
     for row in rows:
