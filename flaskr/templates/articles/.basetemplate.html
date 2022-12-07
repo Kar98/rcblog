@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block links %}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+{% endblock %}
+{% block title %}The performance template{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <article>
+                <div class="post-header">
+                    <h1>Title here</h1>
+                </div>
+                <div class="post-content">
+                    <p>TEXT GOES HERE</p>
+                </div>
+
+            </article>
+        </div>
+    </div>
+    <div class="row">
+        <p>Tags:
+    {% for tag in tags %}
+            <a href="/articles/tags/{{tag}}">{{tag}} </a>
+    {% endfor %}
+        </p>
+    </div>
+</div>
+{% endblock %}

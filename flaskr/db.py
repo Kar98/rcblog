@@ -77,7 +77,7 @@ def init_db_command():
 @click.argument('tags')
 @with_appcontext
 def add_tags(article,tags):
-    """Clear the existing data and create new tables."""
+    """Add tags to the system."""
     # IF article exists, then overwrite tags with param. Otherwise add a new record.
     db = get_db()
     if(articleExists(article)):
