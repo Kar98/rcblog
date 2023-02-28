@@ -62,7 +62,7 @@ def article4():
     return render_template('articles/loadtest-comparison.html',tags=outputTagsForArticle('loadtest-comparison'))
 
 @bp.route('/articles/2022/what-test-tools')
-def article4():
+def article5():
     return render_template('articles/what-test-tools.html',tags=outputTagsForArticle('what-test-tools'))
 '''
 @bp.route('/articles/<year>/<url>')
