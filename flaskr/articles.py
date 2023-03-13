@@ -40,32 +40,12 @@ def outputTagsForArticle(article):
     return foundTags
 
 
+@bp.route('/articles/<year>/<title>')
+def getArticle(year: str, title: str):
+    return render_template(f'articles/{title}.html',tags=outputTagsForArticle(title))
+
+
 @bp.route('/articles')
 def articleIndex():
     g.endpoint = 'articles'
     return render_template('articles.html')
-
-@bp.route('/articles/2021/the-dubious-nature-of-agile')
-def article1():
-    return render_template('articles/the-dubious-nature-of-agile.html',tags=outputTagsForArticle('the-dubious-nature-of-agile'))
-
-@bp.route('/articles/2021/automation-ins-and-outs')
-def article2():
-    return render_template('articles/automation-ins-and-outs.html',tags=outputTagsForArticle('automation-ins-and-outs'))
-
-@bp.route('/articles/2021/running-a-good-review')
-def article3():
-    return render_template('articles/running-a-good-review.html',tags=outputTagsForArticle('running-a-good-review'))
-
-@bp.route('/articles/2022/loadtest-comparison')
-def article4():
-    return render_template('articles/loadtest-comparison.html',tags=outputTagsForArticle('loadtest-comparison'))
-
-@bp.route('/articles/2022/what-test-tools')
-def article5():
-    return render_template('articles/what-test-tools.html',tags=outputTagsForArticle('what-test-tools'))
-'''
-@bp.route('/articles/<year>/<url>')
-def getArticle(year,name):
-    return render_template('articles/{}'.format(name))
-'''
