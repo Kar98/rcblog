@@ -5,6 +5,7 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; }
 
+
 body {
   margin: 0; }
 
@@ -22,6 +23,8 @@ nav,
 section,
 summary {
   display: block; }
+
+footer{text-align: center;}
 
 audio,
 canvas,
@@ -4665,7 +4668,7 @@ a.list-group-item-danger {
   background-color: #f5f5f5;
   border-top: 1px solid #ddd;
   border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px; }
+  border-bottom-left-radius: 3px;}
 
 .panel > .list-group,
 .panel > .panel-collapse > .list-group {

@@ -49,3 +49,4 @@ def getArticle(year: str, title: str):
 def articleIndex():
     g.endpoint = 'articles'
     return render_template('articles.html')
+

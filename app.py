@@ -5,3 +5,6 @@ if __name__ == '__main__':
     create_app.run()
 else:
     app = create_app()
+
+# TODO Mobile
+# TODO 
