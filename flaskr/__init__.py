@@ -1,6 +1,9 @@
 import os
 
 from flask import Flask, render_template, g, request
+from flask_mobility import Mobility
+from flask_mobility.decorators import mobile_template
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True, static_url_path='', static_folder='static')
@@ -24,6 +27,7 @@ def create_app(test_config=None):
 
 
     @app.route('/')
+    #@mobile_template('{mobile/}')
     def index():
         g.endpoint = "index"
         return render_template('index.html')
