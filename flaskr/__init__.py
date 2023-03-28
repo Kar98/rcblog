@@ -1,8 +1,6 @@
 import os
 
 from flask import Flask, render_template, g, request
-from flask_mobility import Mobility
-from flask_mobility.decorators import mobile_template
 
 def create_app(test_config=None):
     # create and configure the app
