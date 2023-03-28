@@ -7,7 +7,7 @@ from flask_mobility.decorators import mobile_template
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True, static_url_path='', static_folder='static')
-    Mobility(app)
+    #Mobility(app)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
@@ -28,7 +28,6 @@ def create_app(test_config=None):
 
 
     @app.route('/')
-    @mobile_template('{mobile/}')
     def index():
         g.endpoint = "index"
         return render_template('index.html')
@@ -42,6 +41,11 @@ def create_app(test_config=None):
     def search():
         g.endpoint = "search"
         return render_template('search.html')
+    
+    @app.route('/test')
+    def test():
+        g.endpoint = 'test'
+        return render_template('test.html')
 
     from . import db
     db.init_app(app)
