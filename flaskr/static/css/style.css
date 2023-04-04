@@ -1,6 +1,12 @@
+:root{
+  --fontcolour: #e2e2e2;
+  --bgcolour: rgb(37,37,38);
+}
+
 header{
   font-size: 10;
-  background-color: brown;
+  background-color: var(--bgcolour);
+  margin: 0;
 }
 
 footer{
@@ -12,8 +18,20 @@ splash{
   font-size: x-large;
 }
 
+.menu a{
+  color:rgb(46, 103, 141);
+}
+
 .menu li {
   display: inline-block;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: aqua;
+}
+
+body{
+  margin: 0;
+  background-color: var(--bgcolour);
+  color: var(--fontcolour);
+  max-width: 800px;
 }
