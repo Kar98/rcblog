@@ -39,6 +39,47 @@
   </ul>
 </div>
 
+<article>
+  <div class="post-header">
+      <h1>The internet performance test tool comparisons</h1>
+  </div>
+  <div class="post-content">
+      <p>If you actually want a proper analysis of some performance test tools: <a href="/articles/what-test-tools.html">click here</a></p>
+      <p>I've been doing performance testing for about 7 years now and I typically default to my preferred load test tool: Jmeter. It's free,
+      runs ok, and has a ton of community support around it when it comes to things such as reporting. But the other day I was curious what else is
+      out there for getting your performance test needs sorted and I did what any modern internet user does and that's to Google it.</p>
+      <img src="/images/loadtest-comparison/1.jpg" alt="Notice how it's Open Source & Paid yet all of them have free trials?">
+      <p>The results were incredibly dissapointing. Of course it's Google so the first things displayed are the ads, but scrolling down you end up
+      with the typical 'top # tools here!'. Then clicking on the first one hosted by guru99.com, it lists a bunch of tools without explaining what
+      you should be looking for and then picks some paid service called LoadNinja (hosted by Smarbear, the ones behind SoapUI ... ew). I suspect
+      a nice brown enveloper was included as part of the top load test tools there.</p>
+      <p>Now as a bit of fun, lets delve down into the 2 tools I know very well, Jmeter and Loadrunner. </p>
+      <img src="/images/loadtest-comparison/2.jpg">
+      <p>Starting off it looks pretty ok. Free tool not needing state-of-the-art infrastructure, I mean sure I guess, but it's free so that's the
+      most important thing here. Portable? Sure. Less scripting? Arguable, but nothing wrong there. Support Tomcat collectors? Oh this I didn't know
+      about, normally when it comes to reporting I use whatever the infrastructure team has got setup or worst case run nmon/perfmon and get my
+      metrics that way. Neat that Jmeter supports it.</p>
+      <img src="/images/loadtest-comparison/3.jpg">
+      <p>Well that's a bit embarrasing... Moving on!</p>
+      <img src="/images/loadtest-comparison/4.jpg">
+      <p>Looking at our next one down is Loadrunner and the header text is fairly accurate, it does have very nice reports. But under features...</p>
+      <p>Lowers the cost of load testing? In what world!? It jacks those prices skyhigh where licenses cost in the thousands. Loadrunner is all about
+      selling its bells and whisles to large corporations who can splash a bit of cash or the HP/Microfocus sales team have worked their silver tongues
+      on middle management. Most of the performance testing taking place is at a browser level and yes Loadrunner can do that, but there's no need to
+      pay thousands for that privilege. </p>
+      <p>Then the following features ... I mean geez. Every other point listed is something that literally any other performance test tool will do.
+      'Reduces the risk of deploying systems', 'lowers hardware costs', 'utilization tracking'</p>
+      <p>It reads like keyword stuffing</p>
+      <p>To not even mention the actual benefits of Loadrunner such as the range of protocols supported or the auto correlation, to me appears as
+      if the writer has never used Loadrunner and basically gave up past the 5th tool listed.</p>
+      <p>Then there's this which I found amusing</p>
+      <img src="/images/loadtest-comparison/5.jpg">
+      <p>Which protocols does Loadrunner support? ALL OF THEM. All the protocols. HTTP? Yes. SMTP? Yes. USB? Well it says all of them so I guess yes!</p>
+      <p>Need to performance test your microprocessors? Well Loadrunner has you covered ... apparently</p>
+  </div>
+
+</article>
+
 </body>
 
 <footer><p><a href="/">RcSoftware</a> <a href="https://github.com/Kar98">Github</a> </p></footer>

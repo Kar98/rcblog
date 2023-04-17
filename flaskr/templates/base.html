@@ -2,30 +2,23 @@
 <head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
 <title>{% block title %}{% endblock %}</title>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/shintori.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 {% block links %}{% endblock %}
+<header>
+  <div class="navbar navbar-inverse navbar-static-top" style="font-family:Montserrat">
+    <div class="container">
 
-<div class="navbar navbar-inverse navbar-static-top" style="font-family:Montserrat">
-  <div class="container">
-  <div class = "navbar-header">
-    <a class="navbar-brand" href="/">RC Software</a>
-  </div>
-
-    <ul class="navbar-nav nav">
-      <li>
-      <a href="/articles">Articles</a>
-      </li>
-      <li>
-      <a href="/about">About</a>
-      </li>
+    <ul class="menu">
+      <li><splash><a class="navbar-brand" href="/">RC Software</a></splash></li>
+      <li><a href="/articles">Articles</a></li>
+      <li><a href="/about">About</a></li>
       <li><a href="/search">Search</a></li>
     </ul>
     </div>
-
-
-</div>
+  </div>
+</header>
 
 <div class="container" id="main">
   {% block content %}
