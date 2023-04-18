@@ -1,5 +1,6 @@
 :root{
   --fontcolour: #e2e2e2;
+  --menu_color: #ffffff;
   --bgcolour: rgb(37,37,38);
   --link-color: rgb(102, 102, 197);
 }
@@ -36,10 +37,11 @@ footer{
 splash{
   font-size: x-large;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .menu a{
-  color:rgb(179,104,30);
+  color:var(--menu_color);
   padding: 5px;
   border-radius: 5px;
 }
@@ -48,7 +50,7 @@ splash{
   display: inline-block;
   padding: 10px;
   border-radius: 10px;
-  color: rgb(179,104,30)
+  color: var(--menu_color)
 }
 
 img{
