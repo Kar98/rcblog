@@ -1,17 +1,32 @@
 :root{
-  --fontcolour: #e2e2e2;
+  --fontcolour: rgb(212,212,200);
+  --headercolour: #ffffff;
   --menu_color: #ffffff;
   --bgcolour: rgb(37,37,38);
   --link-color: rgb(102, 102, 197);
 }
 
+.post-content{
+  line-height: 150%;
+}
+
+.post-header{
+  background-color: rgb(35,35,35);
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}
 
 body{
   margin: 0;
   background-color: var(--bgcolour);
-  color: var(--fontcolour);
   max-width: 800px;
   margin: auto;
+  color: var(--fontcolour);
+}
+
+body h1,h2,h3,h4{
+  color: var(--headercolour);
 }
 
 body a{
@@ -19,7 +34,7 @@ body a{
 }
 
 body a:hover{
-  color:rgb(121, 121, 187)
+  color:rgb(121, 121, 187);
 }
 
 header{
@@ -50,9 +65,13 @@ splash{
   display: inline-block;
   padding: 10px;
   border-radius: 10px;
-  color: var(--menu_color)
+  color: var(--menu_color);
 }
 
 img{
   max-width: 100%;
+}
+
+h4{
+  text-decoration: underline;
 }
