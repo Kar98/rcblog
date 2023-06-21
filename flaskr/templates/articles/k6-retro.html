@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block links %}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+{% endblock %}
+{% block title %}K6 - Jack of some trades, master of none{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div>
+            <article>
+                <div class="post-header">
+                    <h1>K6 - Jack of some trades, master of none</h1>
+                </div>
+                <div class="post-content">
+                    <p>I've been doing performance testing for almost 10 years now and I like to try out the new tools occasionally to see what features I've been missing. K6 popped up in the last few years and I finally had the opportunity to try it out in force rather than little demo projects I've setup.</p>
+                    <p>I had to performance test a phone app that was a basic banking application. Most of the functionality consisted of transferring money, checking account balances and updating details. The client had a common problem where they need to do performance testing but didn't know how many people will be using it, or at what point the app is considered unusable.</p>
+                    <p>I slapped on some industry standard benchmarks and got scripting in K6. First thing to note is that it's not Javascript but a JS interface. The actual code compiles into Go which makes a lot of sense as JS isn't build for performance but flexibility. This is good for writing scripts, but bad when you want to include other libraries such as UUID generators as it's not possible for K6 to include those.</p>
+                    <p>Next I had to figure how the scenarios are setup. There are a few quirks but I've found that to be the case with all tools. For instance in K6 I wanted a test where I rampup for 10 minutes then run for 1 hour. In JMeter you set the rampup time and runtime together. But in K6 you have to set a target load and duration.</p>
+                    <img src="/images/k6-retro/1.png" alt="scenarios">
+                    <p>When I first set it up I wanted 10 min rampup and 1 hour but only put the 1 stage in, meaning the rampup became the entire test. 
+                        The above image is how it should actually be setup. I ended up with a not so great run as it only hit peak load at the end of the test rather than after the first 10 minutes.</p>
+                    <p>The next issue I found is the lack of global variables in K6. Each thread in K6 will create it's own copy of whatever variables you set in the init stage, but if you want to share variables across threads it's not possible. Now normally global variables shared in this way is bad programming, but it is unfortunately a useful solution in performance testing.</p>
+                    <p>I was only given 2 users to test with for this performance test. To do any actions in the script you needed to login, but there were limits on how many user logins I could request or the app would lock the user out. I needed to simulate at least 20 users doing actions on this app and I wanted to balance the user roles between these 20 users. Then to make matters worse, there was a 15 min timeout on the tokens. In JMeter you can set a global property and update it on the fly and all the threads can read/write to this variable. But in K6 I had to have each thread keep a copy of the token, then pray that the users wouldn't get locked out as I added more users on to generate the load.</p>
+                    <p>After solving the login issue I now hit what I consider the biggest flaw in K6 and that's the request aggregation. JMeter will log each individual request and if the name is unique then it creates a new row, but if it's the same name then it collates it. K6 will aggregate all by default and if you don't set up custom timers it will aggregate all requests into the 1 group called http_req_duration. K6 doesn’t automatically fail for non 200 codes and you need to manually set this up. If you let K6 handle it, then it will aggregate all errors into a single metric which means you can’t troubleshoot which API is failing.</p>
+                    <img src="/images/k6-retro/2.png">
+                    <p>This creates a huge amount of overhead if you're trying to do basic API testing because you need to know how each individual API is performing during the test, but if it's aggregated then you have no idea.</p>
+                    <img src="/images/k6-retro/3.png">
+                    <p>The datapools are lacking in k6 and it needs the same functionality as Jmeter. In Jmeter there's a variety of different datapool options to help get some randomisation in the test. But in k6 you can only share amongst the scenario threads. This means no global unique datapools which is very useful when creating unique user logins.</p>
+                    <p>When it comes to reporting K6 is also limited and where I believe K6 tries to extract some money for you. In JMeter it comes with a series of default reports such as response time over time, and you can extend these with plugins that others have made which are incredibly useful. K6 doesn’t even come with a way to plot response time which is incredibly useful in diagnosing instability in servers or troubleshooting poor performance. Due to the way K6 aggregates, you can only determine that the server was operating poorly at some point in the test, rather than at a specific point.
+                        K6 does offer reporting tools if you use their cloud service version, but again when compared to JMeter it’s lacking.</p>
+                    <p>There are some dashboards you can setup to output K6 to during a run but as I was pressed for time I didn't attempt to set these up.</p>
+                    <p>For the final point it’s a bit more technical. I had a situation in my test where I needed to create asynchronous calls and K6 does this well by including a function called batch().The scenario needed to batch some APIs together which I had already implemented, but since the interface is different I would need to rewrite my previous implementation. This was not possible as I had to run the test tonight and I ended up not doing the batching and using synchronous calls instead.</p>
+                    <img src="/images/k6-retro/4.png">
+                    <img src="/images/k6-retro/5.png">
+                    <p>If there was some way of passing a function as a callback and having that batch, it would save a lot of duplicate code.</p>
+                    <p>Overall I was a bit disappointed with k6. It was fun learning a new tool and being able to write in just Javascript without having to learn a propriety scripting language. But the features that you need to be able to accurately access performance were not there such as reporting and I had to rely off other tools to generate the graphs for me (JMeter). With a few more feature it could be competitive with JMeter but until then, JMeter will be my main tool of choice.</p>
+                </div>
+
+            </article>
+        </div>
+    </div>
+    <div class="row">
+        <p>Tags:
+    {% for tag in tags %}
+            <a href="/articles/tags/{{tag}}">{{tag}} </a>
+    {% endfor %}
+        </p>
+    </div>
+</div>
+{% endblock %}
